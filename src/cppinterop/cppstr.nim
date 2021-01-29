@@ -54,5 +54,9 @@ converter toCppStringRef*(str: string): ref CppString = newCppString(str)
 converter makeRef*(str: sink CppString): ref CppString {.nodestroy.} =
   new(result)
   copyMem(addr result[], unsafeAddr str, sizeof CppString)
+converter makePtr*(str: CppString): ptr CppString = unsafeAddr str
+converter toCppStringPtr*(str: ref CppString): ptr CppString = cast[ptr CppString](str)
+converter toCppStringPtr*(str: string): ptr CppString = newCppString(str)
 
 proc `$`*(str: CppString): string {.genref.} = $(str.c_str())
+proc `$`*(str: ptr CppString): string = $(str[].c_str())

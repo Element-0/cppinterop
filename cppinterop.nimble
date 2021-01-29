@@ -5,6 +5,7 @@ author        = "CodeHz"
 description   = "C++ interop"
 license       = "LGPL-3.0"
 srcDir        = "src"
+backend       = "cpp"
 
 
 # Dependencies
