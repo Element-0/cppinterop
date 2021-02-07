@@ -1,11 +1,22 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 
 extern "C" {
 void printstr(std::string str) { std::cout << str << std::endl; }
 void printstrref(std::string &str) { std::cout << str << std::endl; }
 void printstrconstref(std::string const &str) { std::cout << str << std::endl; }
+void printmap(std::map<int, int> m) {
+  for (auto [k, v] : m) {
+    std::cout << k << " -> " << v << std::endl;
+  }
+}
+void printstrmap(std::map<int, std::string> m) {
+  for (auto [k, v] : m) {
+    std::cout << k << " -> " << v << std::endl;
+  }
+}
 
 std::string returnstr() { return "test"; }
 std::string returnlongstr() {

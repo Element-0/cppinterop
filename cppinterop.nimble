@@ -12,4 +12,5 @@ backend       = "cpp"
 
 requires "nim >= 1.4.2"
 requires "ezutils"
+requires "fusion"
 requires "winim"
