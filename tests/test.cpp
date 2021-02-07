@@ -1,7 +1,7 @@
 #include <iostream>
+#include <map>
 #include <string>
 #include <vector>
-#include <map>
 
 extern "C" {
 void printstr(std::string str) { std::cout << str << std::endl; }
@@ -24,6 +24,9 @@ std::string returnlongstr() {
 }
 
 std::vector<int> returnintvec() { return {1, 2, 3}; }
+
+std::map<int, int> returnmap() { return {{0, 1}, {3, 2}, {2, 3}}; }
+std::map<int, std::string> returnstrmap() { return {{0, "1"}, {3, "2"}, {2, "3"}}; }
 
 void printintvec(std::vector<int> ints) {
   std::cout << "here" << std::endl;

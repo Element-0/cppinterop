@@ -36,6 +36,8 @@ import cppinterop/[map, cppstr]
 
 proc printmap(str: sink Map[cint, cint]) {.importc.}
 proc printstrmap(str: sink Map[cint, CppString]) {.importc.}
+proc returnmap(): Map[cint, cint] {.importc.}
+proc returnstrmap(): Map[cint, CppString] {.importc.}
 
 suite "Basic usage":
   test "Empty print":
@@ -64,3 +66,11 @@ suite "Basic usage":
     m.initMap
     m[0] = "asd"
     printstrmap(m)
+
+  test "Return map":
+    var m = returnmap()
+    echo dump(m)
+
+  test "Return strmap":
+    var m = returnstrmap()
+    echo dump(m)
