@@ -1,7 +1,7 @@
 import unittest
 import cppinterop/[map, cppstr]
 
-{.compile:"test.cpp".}
+{.compile: "test.cpp".}
 
 # proc tmp() =
 #   var m: Map[cint, CppString]
