@@ -12,6 +12,8 @@ type
   Map*[K, V] = object
     raw: Tree[MapPair[K, V]]
 
+  MapIterator*[K, V] = TreeIterator[MapPair[K, V]]
+
 func `$`*[K, V](self: MapPair[K, V]): string =
   $self.key & " -> " & $self.val
 
@@ -28,11 +30,11 @@ proc contains*[K, V](self: var Map[K, V]; key: K): bool =
   let node = self.raw.find_lower_bound(key)
   node.val <=< key
 
-proc find*[K, V](self: var Map[K, V]; key: K): TreeIterator[MapPair[K, V]] =
+proc find*[K, V](self: var Map[K, V]; key: K): MapIterator[K, V] =
   let node = self.raw.find_lower_bound(key)
   result.raw = if node.val <=< key: node.val else: self.raw.val.head
 
-proc erase*[K, V](self: var Map[K, V]; iter: TreeIterator[MapPair[K, V]]): TreeIterator[MapPair[K, V]] =
+proc erase*[K, V](self: var Map[K, V]; iter: MapIterator[K, V]): MapIterator[K, V] =
   result.raw = self.raw.erase(iter)
 
 proc getOption*[K, V](self: var Map[K, V]; key: K): Option[V] =
