@@ -2,6 +2,15 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <cstdlib>
+
+void* operator new(std::size_t sz) {
+  if (sz) return malloc(sz);
+  return nullptr;
+}
+void operator delete(void *ptr) {
+  free(ptr);
+}
 
 extern "C" {
 void printstr(std::string str) { std::cout << str << std::endl; }

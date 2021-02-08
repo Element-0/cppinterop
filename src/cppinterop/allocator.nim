@@ -1,6 +1,6 @@
-proc cmalloc*(size: int): pointer {.importcpp: "::operator new(@)".}
-proc cfree*(target: pointer) {.importcpp: "::operator delete(@)".}
-proc cmemset*(target: pointer; c: int; n: int) {.importc: "memset", nodecl.}
+proc cmalloc*(size: int): pointer {.importc: "malloc", header: "stdlib.h", nodecl.}
+proc cfree*(target: pointer) {.importc: "free", header: "stdlib.h", nodecl.}
+proc cmemset*(target: pointer; c: int; n: int) {.importc: "memset", header: "stdlib.h", nodecl.}
 
 proc calloc*(T: typedesc): ptr T {.inline.} =
   cast[ptr T](cmalloc(sizeof T))
